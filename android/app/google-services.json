@@ -1,0 +1,29 @@
+{
+  "project_info": {
+    "project_number": "462418062845",
+    "project_id": "kecconnect-76d99",
+    "storage_bucket": "kecconnect-76d99.appspot.com"
+  },
+  "client": [
+    {
+      "client_info": {
+        "mobilesdk_app_id": "1:462418062845:android:a1a42fe36369444f32bd94",
+        "android_client_info": {
+          "package_name": "com.example.kecconnect"
+        }
+      },
+      "oauth_client": [],
+      "api_key": [
+        {
+          "current_key": "AIzaSyCIAMiKCIBUYZo13wBBPpbsMSQMHojVXao"
+        }
+      ],
+      "services": {
+        "appinvite_service": {
+          "other_platform_oauth_client": []
+        }
+      }
+    }
+  ],
+  "configuration_version": "1"
+}
