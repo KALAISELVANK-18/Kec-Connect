@@ -11,8 +11,28 @@ class _AboutState extends State<About> {
   @override
   Widget build(BuildContext context) {
     return Scaffold(
+      backgroundColor: Colors.white,
       appBar: AppBar(
-        
+
+        leading: IconButton(onPressed: (){
+          Navigator.of(context).pop();
+        },icon: Icon(Icons.arrow_back,color: Colors.black,)),
+        backgroundColor: Colors.white,
+        elevation: 0,
+        title: Center(
+          child: Row(
+            mainAxisAlignment: MainAxisAlignment.center,
+            children: [
+              Image.asset("images/logo2.png",width: 35,height: 35,),
+              Padding(
+                padding: const EdgeInsets.only(right: 50.0),
+                child: Text("ABOUT US",
+                  style:GoogleFonts.barlow(textStyle:TextStyle(color: Color.fromARGB(255, 83, 113, 255),fontWeight: FontWeight.bold,fontSize: 25)),),
+              )
+
+            ],
+          ),
+        ),
       ),
       body: SingleChildScrollView(
         child: Padding(

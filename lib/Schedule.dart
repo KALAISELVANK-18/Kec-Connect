@@ -2,6 +2,7 @@ import 'dart:async';
 
 import 'package:flutter/material.dart';
 import 'package:flutter_pdfview/flutter_pdfview.dart';
+import 'package:google_fonts/google_fonts.dart';
 class PDFScreen extends StatefulWidget {
   final String? path;
 
@@ -22,6 +23,8 @@ class _PDFScreenState extends State<PDFScreen> with WidgetsBindingObserver {
   @override
   Widget build(BuildContext context) {
     return Scaffold(
+
+
       appBar: AppBar(
         actions: <Widget>[
           IconButton(
@@ -31,15 +34,27 @@ class _PDFScreenState extends State<PDFScreen> with WidgetsBindingObserver {
             },
           ),
         ],
+
         leading: IconButton(onPressed: (){
-      Navigator.of(context).pop();
-    },icon: Icon(Icons.arrow_back,color: Colors.black,)),
-    backgroundColor: Colors.white,
-    elevation: 0,
-    title: Image.asset("images/logo-color.png",width: 250,height: 90,),
-    ),
+          Navigator.of(context).pop();
+        },icon: Icon(Icons.arrow_back,color: Colors.black,)),
+        backgroundColor: Colors.white,
+        elevation: 0,
+        title: Center(
+          child: Row(
+            mainAxisAlignment: MainAxisAlignment.center,
+            children: [
+              Image.asset("images/logo2.png",width: 35,height: 35,),
+              Padding(
+                padding: const EdgeInsets.only(right: 30.0),
+                child: Text("SCHEDULE",
+                  style:GoogleFonts.barlow(textStyle:TextStyle(color: Color.fromARGB(255, 83, 113, 255),fontWeight: FontWeight.bold,fontSize: 25)),),
+              )
 
-
+            ],
+          ),
+        ),
+      ),
       body: Stack(
         children: <Widget>[
           PDFView(
