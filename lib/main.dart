@@ -4,6 +4,7 @@ import 'package:flutter/services.dart';
 import 'package:kecconnect/Contact.dart';
 import 'package:kecconnect/HomePage.dart';
 import 'package:kecconnect/MyHomePage1.dart';
+import 'package:kecconnect/SplashScreen.dart';
 import 'package:kecconnect/collapse.dart';
 
 import 'firebase_options.dart';
@@ -38,7 +39,7 @@ class MyApp extends StatelessWidget {
 
     return MaterialApp(
       debugShowCheckedModeBanner: false,
-      home: HomePage(),
+      home: SplashScreen(),
     );
   }
 }

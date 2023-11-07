@@ -27,7 +27,7 @@ class _AboutState extends State<About> {
               Padding(
                 padding: const EdgeInsets.only(right: 50.0),
                 child: Text("ABOUT US",
-                  style:GoogleFonts.barlow(textStyle:TextStyle(color: Color.fromARGB(255, 83, 113, 255),fontWeight: FontWeight.bold,fontSize: 25)),),
+                  style:GoogleFonts.barlow(textStyle:TextStyle(color: Color.fromARGB(255, 52, 30, 157),fontWeight: FontWeight.bold,fontSize: 25)),),
               )
 
             ],

@@ -48,17 +48,55 @@ class _HomePageState extends State<HomePage> {
   @override
   Widget build(BuildContext context) {
     return Scaffold(
-      backgroundColor: Color.fromARGB(255, 52, 30, 157),
-      // appBar: AppBar(
-      //
-      //   flexibleSpace: Center(
-      //     child: Text(
-      //       "KEC CONNECT",style: GoogleFonts.roboto(color: Colors.white,fontWeight: FontWeight.w500,fontSize: 18),
-      //     ),
-      //   ),
+      drawer: Drawer(
 
-      //
-      // ),
+        width: 150,
+        surfaceTintColor: Colors.red,
+        shadowColor: Colors.red,
+        child: Text("dfg"),
+      ),
+
+
+      backgroundColor: Color.fromARGB(255, 52, 30, 157),
+      appBar: AppBar(
+
+        backgroundColor: Colors.white,
+        elevation: 0,
+        flexibleSpace: Container(
+          child: Padding(
+            padding: const EdgeInsets.all(30),
+            child: Row(
+              mainAxisAlignment: MainAxisAlignment.center,
+              children: [
+                Padding(
+                  padding: const EdgeInsets.only(right: 0),
+                  child: Text("KEC",
+                    style:GoogleFonts.barlow(textStyle:TextStyle(color: Color.fromARGB(255,52, 30, 157),fontWeight: FontWeight.bold,fontSize: 25,letterSpacing: 2)),),
+                ),
+                Image.asset("images/logo2.png",width: 35,height:35,),
+                Padding(
+                  padding: const EdgeInsets.only(right: 0),
+                  child: Text("CONNECT",
+                    style:GoogleFonts.barlow(textStyle:TextStyle(color: Color.fromARGB(255,52, 30, 157),fontWeight: FontWeight.bold,fontSize: 25,letterSpacing: 2)),),
+                )
+                //Text("KEC CONNECT",style: GoogleFonts.poppins(fontWeight: FontWeight.bold,fontSize: 28,color:Color.fromARGB(255, 29, 190, 115) )),
+              ],
+
+            ),
+          ),
+
+          decoration: BoxDecoration(
+              color: Color.fromARGB(255, 255, 255, 255),
+              borderRadius: BorderRadius.only(
+                bottomLeft: Radius.circular(30),
+                bottomRight: Radius.circular(30),
+              )
+          ),
+
+        ),
+
+
+      ),
       body: SingleChildScrollView(
         child: Container(
           child : Column(
@@ -68,60 +106,41 @@ class _HomePageState extends State<HomePage> {
                 decoration: BoxDecoration(
                   color: Colors.white,
                   borderRadius: BorderRadius.only(
-                    bottomRight: Radius.circular(30),
-                    bottomLeft: Radius.circular(30),
+                    // bottomRight: Radius.circular(30),
+                    // bottomLeft: Radius.circular(30),
                   )
                 ),
                 child: Padding(
-                  padding: const EdgeInsets.only(top: 10),
+                  padding: const EdgeInsets.only(top: 0),
                   child: Column(
                     children: [
 
-                       Row(
-                         mainAxisAlignment: MainAxisAlignment.center,
-                         children: [
-                           Container(
-                               child: Padding(
-                                 padding: const EdgeInsets.all(15),
-                                 child: Row(
-                                   children: [
-                                     Image.asset("images/logo-color.png",width: 250,height:100,),
-                                     //Text("KEC CONNECT",style: GoogleFonts.poppins(fontWeight: FontWeight.bold,fontSize: 28,color:Color.fromARGB(255, 29, 190, 115) )),
-                                   ],
-                                   mainAxisAlignment: MainAxisAlignment.center,
-                                 ),
-                               ),
 
-                             decoration: BoxDecoration(
-                               color: Color.fromARGB(255, 255, 255, 255),
-                               borderRadius: BorderRadius.only(
-                                 bottomLeft: Radius.circular(30),
-                                 bottomRight: Radius.circular(30),
-                               )
-                             ),
 
-                           ),
+                      Image.asset("images/home2.png",scale: 1,
+                        height: MediaQuery.of(context).size.width,width: MediaQuery.of(context).size.width,
+                        // color: Color.fromARGB(255, 83, 113, 255),
+                      fit: BoxFit.fill,
+                      ),
+                      Container(
+                        margin: EdgeInsets.zero,
+                        decoration:BoxDecoration(
 
-                         ],
-
-                       ),
-
-                      Padding(
-                        padding: const EdgeInsets.only(top: 10,bottom: 5),
+                            color: Color.fromARGB(255, 52, 30, 157),
+                            borderRadius: BorderRadius.only(topLeft: Radius.circular(30),topRight: Radius.circular(30))
+                        ),
                         child: Row(
                           children: [
-                            Image.asset("images/home.png",
-                              height: 280,width: MediaQuery.of(context).size.width*0.7,
-                            ),
+                            SizedBox(height: 20,),
                           ],
-                          mainAxisAlignment: MainAxisAlignment.center,
-                        )
+                        ),
                       ),
                     ],
                   ),
                 ),
               ),
               Container(
+                margin: EdgeInsets.all(0),
                 decoration: BoxDecoration(
                   //color: Color.fromARGB(255, 29, 190, 115),
                     color: Color.fromARGB(255, 52, 30, 157),
@@ -131,8 +150,8 @@ class _HomePageState extends State<HomePage> {
                   children:[
                 Padding(
 
-                  padding: const EdgeInsets.only(top: 20),
-                  child: Text("What would you like to do?",style: GoogleFonts.poppins(fontWeight: FontWeight.w600,fontSize: 20,color: Colors.white),),
+                  padding: const EdgeInsets.only(top: 18),
+                  child: Text("What would you like to see?",style: GoogleFonts.poppins(fontWeight: FontWeight.w600,fontSize: 20,color: Colors.white),),
                 ),
                 Row(mainAxisAlignment: MainAxisAlignment.spaceAround,children: [
                   Column(
@@ -143,109 +162,10 @@ class _HomePageState extends State<HomePage> {
                         child: Column(
                           crossAxisAlignment: CrossAxisAlignment.center,
                           children: [
-                            Column(
 
-                              children: [
-                                GestureDetector(
 
-                                  child: Container(
-                                    height: 110,
-                                    width: 110,
-                                    decoration: BoxDecoration(
-                                      color: Colors.white,
-                                      borderRadius: BorderRadius.circular(30),
 
-                                    ),
-                                    child: Column(
-                                      children: [
-                                        Padding(
-                                          padding: const EdgeInsets.only(top: 30),
-                                          child: Container(
-                                            height: 50,
-                                            width: 50,
-                                            child: ClipOval(
-                                                child: SizedBox.fromSize(
-                                                    size: Size.fromRadius(48),
-                                                    child: Icon(Icons.groups,color: Color.fromARGB(255, 29, 190, 115),size: 50,))
-                                            ),
-                                          ),
-                                        ),
 
-                                      ],
-                                    ),
-
-                                  ),
-                                  onTap: (){
-                                    Navigator.push(
-                                      context,
-                                      MaterialPageRoute(
-                                        builder: (BuildContext context) => const About(),
-                                      ),
-                                    );
-                                  },
-                                ),
-                                Text("About KEC",style: GoogleFonts.poppins(fontSize: 20,color: Colors.white),),
-                              ],mainAxisAlignment: MainAxisAlignment.center,
-                            ),
-                              SizedBox(height: 20,),
-
-                            Column(
-                              children: [
-                                GestureDetector(
-
-                                  child: Container(
-                                    height: 110,
-                                    width: 110,
-                                    decoration: BoxDecoration(
-                                      color: Colors.white,
-                                      borderRadius: BorderRadius.circular(30),
-
-                                    ),
-                                    child: Column(
-                                      children: [
-                                        Padding(
-                                          padding: const EdgeInsets.only(top: 30),
-                                          child: Container(
-                                            height: 50,
-                                            width: 50,
-                                            child: ClipOval(
-                                              child: SizedBox.fromSize(
-                                                  size: Size.fromRadius(48), // Image radius
-                                                  child: Icon(Icons.calendar_month,size: 50,color:Color.fromARGB(255, 29, 190, 115) ,)
-                                              ),
-                                            ),
-                                          ),
-                                        ),
-
-                                      ],
-                                    ),
-
-                                  ),
-                                  onTap: (){
-                                    Navigator.push(
-                                      context,
-                                      MaterialPageRoute(
-                                        builder: (BuildContext context) => HomeCalendarPage(),
-                                      ),
-                                    );
-                                  },
-                                ),
-                                Text("Events",style: GoogleFonts.poppins(fontSize: 20,color: Colors.white),),
-                              ],
-                            ),
-                          ],
-                          mainAxisAlignment: MainAxisAlignment.spaceBetween,
-                        ),
-                      ),
-                    ],
-                  ),
-                  Column(
-                    mainAxisAlignment: MainAxisAlignment.center,
-                    children: [
-                      Padding(
-                        padding: EdgeInsets.only(top: 20),
-                        child: Column(
-                          children: [
                             Column(
                               children: [
                                 GestureDetector(
@@ -275,7 +195,7 @@ class _HomePageState extends State<HomePage> {
                                             child: ClipOval(
                                               child: SizedBox.fromSize(
                                                   size: Size.fromRadius(48), // Image radius
-                                                  child: Icon(Icons.call,color: Color.fromARGB(255, 29, 190, 115),size: 50,)
+                                                  child: Icon(Icons.call,color: Color.fromARGB(255,52, 30, 157),size: 50,)
                                               ),
                                             ),
                                           ),
@@ -286,10 +206,12 @@ class _HomePageState extends State<HomePage> {
 
                                   ),
                                 ),
-                                Text("Contacts",style: GoogleFonts.poppins(fontSize: 20,color: Colors.white),),
+                                Padding(
+                                  padding: const EdgeInsets.all(8.0),
+                                  child: Text("Contacts",style: GoogleFonts.poppins(fontSize: 20,color: Colors.white),),
+                                ),
                               ],mainAxisAlignment: MainAxisAlignment.center,
-                            ),
-                            SizedBox(height: 20,),
+                            ),SizedBox(height: 20,),
                             Column(
                               children: [
                                 GestureDetector(
@@ -319,7 +241,7 @@ class _HomePageState extends State<HomePage> {
                                             child: ClipOval(
                                               child: SizedBox.fromSize(
                                                   size: Size.fromRadius(48), // Image radius
-                                                  child: Icon(Icons.schedule,size: 50,color:Color.fromARGB(255, 29, 190, 115) ,)
+                                                  child: Icon(Icons.schedule,size: 50,color:Color.fromARGB(255,52, 30, 157) ,)
                                               ),
                                             ),
                                           ),
@@ -330,8 +252,121 @@ class _HomePageState extends State<HomePage> {
 
                                   ),
                                 ),
-                                Text("Schedule",style: GoogleFonts.poppins(fontSize: 20,color: Colors.white),),
+                                Padding(
+                                  padding: const EdgeInsets.all(8.0),
+                                  child: Text("Schedule",style: GoogleFonts.poppins(fontSize: 20,color: Colors.white),),
+                                ),
                               ],
+                            ),
+                          ],
+                          mainAxisAlignment: MainAxisAlignment.spaceBetween,
+                        ),
+                      ),
+                    ],
+                  ),
+                  Column(
+                    mainAxisAlignment: MainAxisAlignment.center,
+                    children: [
+                      Padding(
+                        padding: EdgeInsets.only(top: 20),
+                        child: Column(
+                          children: [
+                            Column(
+                              children: [
+                                GestureDetector(
+
+                                  child: Container(
+                                    height: 110,
+                                    width: 110,
+                                    decoration: BoxDecoration(
+                                      color: Colors.white,
+                                      borderRadius: BorderRadius.circular(30),
+
+                                    ),
+                                    child: Column(
+                                      children: [
+                                        Padding(
+                                          padding: const EdgeInsets.only(top: 30),
+                                          child: Container(
+                                            height: 50,
+                                            width: 50,
+                                            child: ClipOval(
+                                              child: SizedBox.fromSize(
+                                                  size: Size.fromRadius(48), // Image radius
+                                                  child: Icon(Icons.calendar_month,size: 50,color:Color.fromARGB(255,52, 30, 157) ,)
+                                              ),
+                                            ),
+                                          ),
+                                        ),
+
+                                      ],
+                                    ),
+
+                                  ),
+                                  onTap: (){
+                                    Navigator.push(
+                                      context,
+                                      MaterialPageRoute(
+                                        builder: (BuildContext context) => HomeCalendarPage(),
+                                      ),
+                                    );
+                                  },
+                                ),
+                                Padding(
+                                  padding: const EdgeInsets.all(8.0),
+                                  child: Text("Events",style: GoogleFonts.poppins(fontSize: 20,color: Colors.white),),
+                                ),
+                              ],
+                            ),
+
+                            SizedBox(height: 20,),
+
+                            Column(
+
+                              children: [
+                                GestureDetector(
+
+                                  child: Container(
+                                    height: 110,
+                                    width: 110,
+                                    decoration: BoxDecoration(
+                                      color: Colors.white,
+                                      borderRadius: BorderRadius.circular(30),
+
+                                    ),
+                                    child: Column(
+                                      children: [
+                                        Padding(
+                                          padding: const EdgeInsets.only(top: 30),
+                                          child: Container(
+                                            height: 50,
+                                            width: 50,
+                                            child: ClipOval(
+                                                child: SizedBox.fromSize(
+                                                    size: Size.fromRadius(48),
+                                                    child: Icon(Icons.groups,color: Color.fromARGB(255, 52, 30, 157),size: 50,))
+                                            ),
+                                          ),
+                                        ),
+
+                                      ],
+                                    ),
+
+                                  ),
+                                  onTap: (){
+                                    Navigator.push(
+                                      context,
+                                      MaterialPageRoute(
+                                        builder: (BuildContext context) => const About(),
+                                      ),
+                                    );
+                                  },
+                                ),
+                                Padding(
+                                  padding: const EdgeInsets.all(8.0),
+                                  child: Text("About KEC",style: GoogleFonts.poppins(fontSize: 20,color: Colors.white),),
+                                ),
+                              ],mainAxisAlignment: MainAxisAlignment.center,
                             ),
                           ],
                           mainAxisAlignment: MainAxisAlignment.center,

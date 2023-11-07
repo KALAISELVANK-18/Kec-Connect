@@ -48,7 +48,7 @@ class _PDFScreenState extends State<PDFScreen> with WidgetsBindingObserver {
               Padding(
                 padding: const EdgeInsets.only(right: 30.0),
                 child: Text("SCHEDULE",
-                  style:GoogleFonts.barlow(textStyle:TextStyle(color: Color.fromARGB(255, 83, 113, 255),fontWeight: FontWeight.bold,fontSize: 25)),),
+                  style:GoogleFonts.barlow(textStyle:TextStyle(color: Color.fromARGB(255,52, 30, 157),fontWeight: FontWeight.bold,fontSize: 25)),),
               )
 
             ],

@@ -25,6 +25,7 @@ class _HomeCalendarPageState extends State<HomeCalendarPage> {
 
   late final PageController _pageController ;
   final List<DateTime> gg=[DateTime.utc(2019,6,5)];
+  int greater_val=2;
   late  ValueNotifier<List<Event>> _selectedEvents=new ValueNotifier<List<Event>>([]);
   CalendarFormat _calendarFormat = CalendarFormat.month;
   RangeSelectionMode _rangeSelectionMode = RangeSelectionMode
@@ -69,7 +70,7 @@ class _HomeCalendarPageState extends State<HomeCalendarPage> {
               Padding(
                 padding: const EdgeInsets.only(right: 50.0),
                 child: Text("EVENTS",
-                  style:GoogleFonts.barlow(textStyle:TextStyle(color: Color.fromARGB(255, 83, 113, 255),fontWeight: FontWeight.bold,fontSize: 25)),),
+                  style:GoogleFonts.barlow(textStyle:TextStyle(color: Color.fromARGB(255,52, 30, 157),fontWeight: FontWeight.bold,fontSize: 25,letterSpacing: 2)),),
               )
 
             ],
@@ -111,10 +112,14 @@ class _HomeCalendarPageState extends State<HomeCalendarPage> {
 
                         if(kEvents.length==0){
                           int lent=str.length;
+                          int dummy;
                           for (int i = 0;i < lent; i++) {
                             // print((str[i]["date"] as Timestamp).toDate());
                             List<Event> dynamics=[];
-                            for(int j=0;j<str[i]["event"].length;j++){
+                            dummy=str[i]["event"].length;
+                            if(dummy>greater_val)
+                              greater_val=dummy;
+                            for(int j=0;j<dummy;j++){
                               dynamics.add(Event(str[i]["event"][j]));
                             }
 
@@ -136,7 +141,7 @@ class _HomeCalendarPageState extends State<HomeCalendarPage> {
                                   decoration: BoxDecoration(
                                       color: Colors.white,
                                       borderRadius: BorderRadius.only(
-                                        bottomRight:Radius.circular(15) ,bottomLeft:Radius.circular(15)
+                                       bottomRight:Radius.circular(15) ,bottomLeft:Radius.circular(15)
                                       )
                                   ),
                                   child: Column(
@@ -177,9 +182,12 @@ class _HomeCalendarPageState extends State<HomeCalendarPage> {
                                               onPressed:  () {
                                                 showMonthPicker(
 
-                                                  selectedMonthBackgroundColor: Colors.lightBlueAccent,
+                                                  selectedMonthBackgroundColor: Color.fromARGB(255,52, 30, 157),
                                                   selectedMonthTextColor: Colors.white,
                                                   unselectedMonthTextColor: Colors.black,
+                                                  cancelWidget: Text("Cancel", style:GoogleFonts.barlow(textStyle:TextStyle(color: Colors.redAccent,fontWeight: FontWeight.bold,fontSize: 15,letterSpacing: 2)),),
+                                                  confirmWidget: Text("Ok", style:GoogleFonts.barlow(textStyle:TextStyle(color:Color.fromARGB(255,52, 30, 157),fontWeight: FontWeight.bold,fontSize: 15,letterSpacing: 2)),),
+
                                                   headerTextColor: Colors.white,
                                                   headerColor: Colors.black,
                                                   context: context,
@@ -191,14 +199,13 @@ class _HomeCalendarPageState extends State<HomeCalendarPage> {
                                                   if (date != null) {
                                                     setState(() {
                                                       selectedDate = date;
+                                                      _focusedDay=date;
                                                     });
                                                   }
                                                 });
 
                                               },
                                             ),
-
-
                                             const Spacer(),
                                             IconButton(
                                               icon: Icon(Icons.chevron_left),
@@ -239,12 +246,14 @@ class _HomeCalendarPageState extends State<HomeCalendarPage> {
                                           ],
                                         ),
                                       ),
+
                                       Padding(
                                         padding: const EdgeInsets.only(top: 15,bottom:15,left: 0,right: 15),
                                         child: Container(
 
                                           child: TableCalendar<Event>(
-
+                                              pageJumpingEnabled: true,
+                                          availableGestures: AvailableGestures.all,
                                             onCalendarCreated: (controller) => _pageController = controller,
                                             headerVisible: false,
                                             pageAnimationEnabled: true,
@@ -293,7 +302,9 @@ class _HomeCalendarPageState extends State<HomeCalendarPage> {
                                             rangeEndDay: _rangeEnd,
 
                                             rangeSelectionMode: _rangeSelectionMode,
-                                            eventLoader: (a){return _getEventsForDay(a);},
+                                            eventLoader: (a){
+                                              return _getEventsForDay(a);
+                                              },
                                             startingDayOfWeek: StartingDayOfWeek.sunday,
                                             calendarBuilders: CalendarBuilders(
 
@@ -319,10 +330,11 @@ class _HomeCalendarPageState extends State<HomeCalendarPage> {
                                                         decoration: BoxDecoration(
                                                           boxShadow: [
 
-
                                                           ],
                                                           color:Color.fromARGB(
-                                                              255,52, 30, 157),
+                                                              255-((greater_val-event.length)*30),
+
+                                                              8, 49, 245),
                                                           borderRadius: BorderRadius.circular(2),
 
                                                         ),
@@ -338,10 +350,12 @@ class _HomeCalendarPageState extends State<HomeCalendarPage> {
                                                   ):SizedBox();
                                                 }
                                             ),
-                                            
+
                                             calendarStyle: CalendarStyle(
                                               selectedDecoration: BoxDecoration(
-                                                color: Color.fromARGB(255, 83, 113, 255),shape: BoxShape.circle
+                                                //color: Color.fromARGB(255, 83, 113, 255),
+                                                  color:Color.fromARGB(255,52, 30, 157),
+                                                  shape: BoxShape.circle
                                               ),
                                               selectedTextStyle: GoogleFonts.aBeeZee(textStyle:TextStyle(color: Colors.white,fontWeight: FontWeight.bold,fontSize: 15)),
                                               weekNumberTextStyle: GoogleFonts.poppins(textStyle:TextStyle(color: Colors.black,fontWeight: FontWeight.bold,)),
@@ -362,14 +376,26 @@ class _HomeCalendarPageState extends State<HomeCalendarPage> {
                                               }
                                             },
                                             onPageChanged: (focusedDay) {
+                                                print("Page changed");
                                               setState(() {
                                                 _focusedDay = focusedDay;
+
+    //                                             if(kFirstDay.compareTo(DateTime.utc(_focusedDay.year,_focusedDay.month-1,_focusedDay.day))!=1 &&
+    // kLastDay.compareTo(DateTime.utc(_focusedDay.year,_focusedDay.month-1,_focusedDay.day))!=-1)
+    // selectedDate=DateTime.utc(_focusedDay.year,_focusedDay.month-1,_focusedDay.day);
+    //                                             if(kFirstDay.compareTo(DateTime.utc(focusedDay.year,focusedDay.month+1,focusedDay.day))!=1 &&
+    //                                                 kLastDay.compareTo(DateTime.utc(focusedDay.year,focusedDay.month+1,focusedDay.day))!=-1)
+    //                                               selectedDate=DateTime.utc(focusedDay.year,focusedDay.month+1,focusedDay.day);
+    //                                             print(focusedDay);
+
                                               });
 
                                             },
                                           ),
                                         ),
                                       ),
+
+
                                     ],
 
                                   ),
@@ -377,8 +403,18 @@ class _HomeCalendarPageState extends State<HomeCalendarPage> {
                               ),
 
 
-                              const SizedBox(height: 15.0),
+                              Container(
+                                decoration:BoxDecoration(
 
+                                    color: Color.fromARGB(255, 52, 30, 157),
+                                    //borderRadius: BorderRadius.only(topLeft: Radius.circular(25),topRight: Radius.circular(25))
+                                ),
+                                child: Row(
+                                  children: [
+                                    SizedBox(height: 20,),
+                                  ],
+                                ),
+                              ),
                               Container(
 
                                 decoration:BoxDecoration(
@@ -387,58 +423,85 @@ class _HomeCalendarPageState extends State<HomeCalendarPage> {
                                     borderRadius: BorderRadius.only(topLeft: Radius.circular(20),topRight: Radius.circular(20))
                                 ),
                                 child: Column(
-
                                   children: [
-                                    Padding(
-                                      padding: EdgeInsets.symmetric(horizontal: 0,vertical: 0),
-                                      //SizedBox Widget
-                                      child: SizedBox(
 
-
-                                        child: Center(
-                                          child: Padding(
-                                            padding: const EdgeInsets.all(8.0),
-                                            child: Text(
-                                              'Today Events',
-
-                                              style:GoogleFonts.poppins(textStyle:TextStyle(color: Colors.white,fontWeight: FontWeight.bold,fontSize: 25)),textAlign: TextAlign.center,
-                                            ),
-                                          ), //Text
-                                        ), //Card
-                                      ), //SizedBox
-                                    ),
                                     ValueListenableBuilder<List<Event>>(
                                       valueListenable: _selectedEvents,
                                       builder: (BuildContext context, List<Event> value,child) {
-                                        return ListView.builder(
-                                          shrinkWrap: true,
-                                          physics: NeverScrollableScrollPhysics(),
-                                          itemCount: value.length,
-                                          itemBuilder: (context, index) {
+                                        return (value.length>0)?Column(
+                                          children: [
+                                            Padding(
+                                              padding: EdgeInsets.symmetric(horizontal: 0,vertical: 0),
+                                              //SizedBox Widget
+                                              child: SizedBox(
 
-                                            return Container(
-                                              margin: const EdgeInsets.symmetric(
-                                                horizontal: 12.0,
-                                                vertical: 4.0,
-                                              ),
 
-                                              decoration: BoxDecoration(
-                                                //color: Colors.white,
-                                                borderRadius: BorderRadius.circular(12.0),
-                                                border: Border.all(color: Colors.white)
-                                              ),
-                                              child: ListTile(
-                                                // onTap: () => print('${value[index]}'),
-                                                title: Row(
-                                                  children: [
-                                                    Icon(Icons.play_arrow,color: colour[index%4],),SizedBox(width: 5,),
-                                                    Text('${value[index]}',style:GoogleFonts.poppins(textStyle:TextStyle(color: Colors.white,fontWeight: FontWeight.w600,)),),
-                                                  ],
-                                                ),
-                                              ),
-                                            );
-                                          },
-                                        );
+                                                child: Center(
+                                                  child: Padding(
+                                                    padding: const EdgeInsets.all(8.0),
+                                                    child: Text(
+                                                      'Events for the day',
+
+                                                      style:GoogleFonts.poppins(textStyle:TextStyle(color: Colors.white,fontWeight: FontWeight.bold,fontSize: 25)),textAlign: TextAlign.center,
+                                                    ),
+                                                  ), //Text
+                                                ), //Card
+                                              ), //SizedBox
+                                            ),
+                                            ListView.builder(
+                                              shrinkWrap: true,
+                                              physics: NeverScrollableScrollPhysics(),
+                                              itemCount: value.length,
+                                              itemBuilder: (context, index) {
+
+                                                return Container(
+                                                  margin: const EdgeInsets.symmetric(
+                                                    horizontal: 12.0,
+                                                    vertical: 6.0,
+                                                  ),
+
+                                                  decoration: BoxDecoration(
+
+                                                    boxShadow: [
+                                                      BoxShadow(
+                                                        color: Colors.cyanAccent.withOpacity(0.1),
+                                                        spreadRadius: 5.0,
+                                                        blurRadius: 5.0,
+                                                        offset: Offset(0, 3), // changes the shadow position
+                                                      ),
+
+                                                    ],
+                                                    color: Color.fromARGB(
+                                                        255, 121, 140, 225),
+                                                    borderRadius: BorderRadius.circular(12.0),
+                                                    //border: Border.all(color: Colors.white)
+                                                  ),
+                                                  child: ListTile(
+                                                    // onTap: () => print('${value[index]}'),
+                                                    title: Row(
+                                                      children: [
+                                                        Icon(Icons.play_arrow,color: colour[index%4],),SizedBox(width: 5,),
+                                                        Text('${value[index]}',style:GoogleFonts.poppins(textStyle:TextStyle(color: Colors.white,fontWeight: FontWeight.w600,)),),
+                                                      ],
+                                                    ),
+                                                  ),
+                                                );
+                                              },
+                                            ),
+                                          ],
+                                        ):Center(child:
+                                          Column(
+                                            children: [
+
+
+                                              SizedBox(height: 25,),
+                                              //Image.asset("images/nodata.png",width: 300,height: 300,)
+                                              Padding(
+                                                padding: const EdgeInsets.all(8.0),
+                                                child: Text("No Events on this day!",style:GoogleFonts.poppins(textStyle:TextStyle(color: Colors.white,fontWeight: FontWeight.w600,fontSize: 25)),textAlign: TextAlign.center,),
+                                              )
+                                            ],
+                                          ),);
                                       },
                                     ),
                                   ],
