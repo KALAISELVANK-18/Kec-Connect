@@ -866,7 +866,7 @@ class _ContactState extends State<Contact> with AutomaticKeepAliveClientMixin{
                                                                     child:Container(
                                                                       color: Colors.grey,
                                                                       child: SizedBox(),
-                                                                      height: 150,width: 150,
+                                                                      width:MediaQuery.of(context).size.width*0.35,height:MediaQuery.of(context).size.width*0.35,
                                                                     ),);
                                                                 },
                                                                 errorBuilder: (context,i,j){
@@ -877,7 +877,7 @@ class _ContactState extends State<Contact> with AutomaticKeepAliveClientMixin{
                                                                     child:Container(
                                                                       color: Colors.grey,
                                                                       child: SizedBox(),
-                                                                      height: 150,width: 150,
+                                                                      width:MediaQuery.of(context).size.width*0.35,height:MediaQuery.of(context).size.width*0.35,
                                                                     ),);
                                                                 },
                                                                 frameBuilder: (context,i,j,k){
@@ -889,7 +889,7 @@ class _ContactState extends State<Contact> with AutomaticKeepAliveClientMixin{
                                                                         width:150,height:150,));
                                                                 },
                                                                 fit: BoxFit.cover,
-                                                                width:150,height:150,))
+                                                                width:MediaQuery.of(context).size.width*0.35,height:MediaQuery.of(context).size.width*0.35,))
                                                       ),
                                                     ),
 

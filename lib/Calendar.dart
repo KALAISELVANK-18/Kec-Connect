@@ -153,7 +153,7 @@ class _HomeCalendarPageState extends State<HomeCalendarPage> {
                                           children: [
                                             const SizedBox(width: 16.0),
                                             SizedBox(
-                                              width: 140.0,
+                                              width: MediaQuery.of(context).size.width*0.35,
                                               child: Row(
                                                 children: [
                                                   Container(
@@ -177,7 +177,7 @@ class _HomeCalendarPageState extends State<HomeCalendarPage> {
                                             ),
 
                                             IconButton(
-                                              icon: Icon(Icons.calendar_today, size: 20.0),
+                                              icon: Icon(Icons.calendar_today, size: 25.0,color: Color.fromARGB(255,52, 30, 157),weight: 10,),
                                               visualDensity: VisualDensity.compact,
                                               onPressed:  () {
                                                 showMonthPicker(
@@ -376,18 +376,10 @@ class _HomeCalendarPageState extends State<HomeCalendarPage> {
                                               }
                                             },
                                             onPageChanged: (focusedDay) {
-                                                print("Page changed");
+
                                               setState(() {
-                                                _focusedDay = focusedDay;
-
-    //                                             if(kFirstDay.compareTo(DateTime.utc(_focusedDay.year,_focusedDay.month-1,_focusedDay.day))!=1 &&
-    // kLastDay.compareTo(DateTime.utc(_focusedDay.year,_focusedDay.month-1,_focusedDay.day))!=-1)
-    // selectedDate=DateTime.utc(_focusedDay.year,_focusedDay.month-1,_focusedDay.day);
-    //                                             if(kFirstDay.compareTo(DateTime.utc(focusedDay.year,focusedDay.month+1,focusedDay.day))!=1 &&
-    //                                                 kLastDay.compareTo(DateTime.utc(focusedDay.year,focusedDay.month+1,focusedDay.day))!=-1)
-    //                                               selectedDate=DateTime.utc(focusedDay.year,focusedDay.month+1,focusedDay.day);
-    //                                             print(focusedDay);
-
+                                                _focusedDay=focusedDay;
+                                                selectedDate = focusedDay;
                                               });
 
                                             },
